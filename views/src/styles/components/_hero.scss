@@ -3,7 +3,7 @@
 @import "../globals/mixins";
 
 .hero {
-  height: 600px;
+  height: 500px;
 
   @include b.breakpoint("1240") {
     height: 700px;
@@ -22,9 +22,13 @@
 
     h1 {
       font-family: "Bebas Neue", cursive;
-      font-size: 80px;
+      font-size: 70px;
       text-transform: uppercase;
       line-height: 1.2;
+
+      @include b.breakpoint("768") {
+        font-size: 90px;
+      }
 
       @include b.breakpoint("1240") {
         font-size: 90px;
@@ -37,6 +41,7 @@
         -webkit-text-fill-color: transparent;
       }
     }
+
     button {
       display: flex;
       align-items: center;
@@ -47,5 +52,12 @@
         font-size: 30px;
       }
     }
+  }
+
+  .mobile-hero {
+    position: absolute;
+    bottom: -5rem;
+    left: -1rem;
+    z-index: -1;
   }
 }

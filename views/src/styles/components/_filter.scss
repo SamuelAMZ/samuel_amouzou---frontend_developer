@@ -11,7 +11,9 @@
   justify-content: center;
   gap: 2rem;
 
-  width: 700px;
+  @include b.breakpoint("768") {
+    width: 700px;
+  }
 
   h3 {
     font-family: "Bebas Neue", cursive;
@@ -23,8 +25,12 @@
     width: 100%;
     form {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 1.5rem;
+
+      @include b.breakpoint("768") {
+        grid-template-columns: 1fr 1fr;
+      }
 
       select {
         width: 100%;
@@ -52,6 +58,7 @@
         transition: 0.7s ease-in;
         border: 2px solid white;
         font-size: 17px;
+        padding: 0.6rem;
 
         &:hover {
           background: rgb(255, 176, 24);

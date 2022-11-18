@@ -4,17 +4,23 @@
 
 .popup-container {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0;
+
   color: white;
 
-  width: 700px;
+  width: 100%;
   padding: 2rem;
   background-color: #0c003d;
   box-shadow: 0 0 10px 10px #6e26bb65;
   border-radius: 20px;
   z-index: 5;
+
+  @include b.breakpoint("768") {
+    width: 700px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .backpop {
@@ -23,16 +29,21 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: #0c003d1d;
+  background-color: #0c003d8d;
   z-index: 4;
 }
 
 .closepop {
   position: fixed;
-  top: 3rem;
-  right: 3rem;
+  top: 1rem;
+  right: 1rem;
   color: white;
   z-index: 6;
   font-size: 30px;
   cursor: pointer;
+
+  @include b.breakpoint("768") {
+    top: 2rem;
+    right: 2rem;
+  }
 }

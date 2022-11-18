@@ -16,7 +16,7 @@ const Cards = () => {
 
   return (
     <>
-      <div className="cards-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-5">
+      <div className="cards-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-15">
         <SingleCard />
         <SingleCard />
         <SingleCard />

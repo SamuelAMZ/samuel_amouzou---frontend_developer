@@ -7,9 +7,15 @@
   width: 100%;
   margin-top: 2rem;
   //   border: 1px solid white;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+
   align-items: center;
   justify-content: center;
+
+  @include b.breakpoint("768") {
+    grid-template-columns: 150px auto 150px;
+  }
 
   .mover {
     border: 1px solid white;
@@ -17,7 +23,6 @@
     border-radius: 13px;
     cursor: pointer;
 
-    display: flex;
     flex-direction: row;
     gap: 7px;
     align-items: center;
@@ -31,10 +36,17 @@
     margin-right: 3rem;
   }
 
+  .mobilenext {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
   .steps {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    margin: 0 auto;
     .step {
       border: 1px solid white;
       padding: 0.5rem 1rem;

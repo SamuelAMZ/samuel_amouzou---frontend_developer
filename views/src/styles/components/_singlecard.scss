@@ -36,18 +36,20 @@
   h3 {
     font-size: 30px;
   }
-  hr {
-    width: 50px;
-    height: 2px;
-    margin-bottom: 10px;
-    background: rgb(255, 176, 24);
-    background: linear-gradient(
-      90deg,
-      rgba(255, 176, 24, 1) 0%,
-      rgba(255, 41, 0, 1) 100%
-    );
-    h4 {
-      font-size: 20px;
-    }
+
+  h4 {
+    font-size: 17px;
   }
+}
+
+hr {
+  width: 50px;
+  height: 2px;
+  margin-bottom: 10px;
+  background: rgb(255, 176, 24);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 176, 24, 1) 0%,
+    rgba(255, 41, 0, 1) 100%
+  );
 }

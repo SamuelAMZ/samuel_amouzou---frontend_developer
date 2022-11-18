@@ -15,7 +15,7 @@ const Header = () => {
   const { active, setActive } = useContext(SideMenuOpenContext);
 
   return (
-    <div className="md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 flex items-center justify-between md:px-10 xl:px-5 ">
+    <div className="md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 flex items-center justify-between md:px-10 xl:px-15 ">
       <div className="logo">
         <a href="#home">
           <img src="./images/logo.png" alt="logo" />

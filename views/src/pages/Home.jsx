@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
-      <header style={{ backgroundImage: "url(./images/hero.png)" }}>
+      <header>
         <Header />
         <Hero />
       </header>
