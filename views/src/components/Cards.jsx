@@ -1,18 +1,48 @@
 // built in hooks
-import { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+
+// custom hooks
+import useGetAllCapsules from "../hooks/useGetAllCapsules";
 
 // context
 import IsPopupOpenContext from "../contexts/IsPopupOpenContext";
+import AllCapsuleContext from "../contexts/AllCapsuleContext";
+import IsloadingCapsulesContext from "../contexts/IsLoadingCapsulesContext";
 
 // components
 import SingleCard from "./SingleCard";
 import Pagination from "./Pagination";
 import Popup from "./Popup";
 
-import React from "react";
-
 const Cards = () => {
   const { active } = useContext(IsPopupOpenContext);
+  const { setIsLoading } = useContext(IsloadingCapsulesContext);
+  const { capsules, setCapsules } = useContext(AllCapsuleContext);
+
+  // fetch all capsules
+  const {
+    currentData: capsulesData,
+    isError,
+    isLoading,
+  } = useGetAllCapsules(`${process.env.REACT_APP_DOMAIN}/all`);
+
+  // fetch(`${process.env.REACT_APP_DOMAIN}/all`, {
+  //   method: "GET",
+  // })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
+  useEffect(() => {
+    if (capsulesData) {
+      console.log(capsulesData);
+    }
+    console.log("hey");
+  }, [capsulesData]);
 
   return (
     <>

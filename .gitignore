@@ -6,7 +6,9 @@ views/node_modules
 # dependencies backend
 /vendor
 
-
 # production
 views/build
+
+# env
+views/.env
 

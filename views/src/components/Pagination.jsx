@@ -1,13 +1,13 @@
 import React from "react";
 
 // icons
-import { HiArrowLongRight, HiArrowLongLeft } from "react-icons/hi2";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const Pagination = () => {
   return (
     <div className="pagination-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-5">
       <div className="mover previous hidden md:flex">
-        <HiArrowLongLeft /> prev
+        <BsArrowLeft /> prev
       </div>
       <div className="steps">
         <div className="step active">1</div>
@@ -16,17 +16,17 @@ const Pagination = () => {
         <div className="step">3</div>
       </div>
       <div className="mover next hidden md:flex">
-        next <HiArrowLongRight />
+        next <BsArrowRight />
       </div>
 
       {/* mobile next & previous */}
       <div className="mobilenext grid md:hidden">
         <div className="mover flex">
-          <HiArrowLongLeft />
+          <BsArrowLeft />
           previous
         </div>
         <div className="mover flex">
-          next <HiArrowLongRight />
+          next <BsArrowRight />
         </div>
       </div>
     </div>
