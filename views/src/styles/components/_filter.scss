@@ -1,0 +1,68 @@
+@use "../globals/breakpoints" as b;
+@import "../globals/variables";
+@import "../globals/mixins";
+
+.filter-container {
+  margin-top: 5rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  width: 700px;
+  margin-bottom: 15rem;
+
+  h3 {
+    font-family: "Bebas Neue", cursive;
+    font-size: 50px;
+    text-transform: uppercase;
+  }
+
+  .filters {
+    width: 100%;
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      select {
+        width: 100%;
+        height: 50px;
+        color: white;
+        font-size: 17px;
+        background-color: transparent;
+
+        option {
+          background-color: #0c003d;
+          color: white;
+          border-radius: 20px;
+        }
+      }
+
+      button {
+        background: rgb(255, 176, 24);
+        background: linear-gradient(
+          90deg,
+          rgba(255, 176, 24, 1) 0%,
+          rgba(255, 41, 0, 1) 100%
+        );
+
+        cursor: pointer;
+        transition: 0.7s ease-in;
+        border: 2px solid white;
+        font-size: 17px;
+
+        &:hover {
+          background: rgb(255, 176, 24);
+          background: linear-gradient(
+            180deg,
+            rgba(255, 176, 24, 1) 0%,
+            rgba(255, 41, 0, 1) 100%
+          );
+        }
+      }
+    }
+  }
+}

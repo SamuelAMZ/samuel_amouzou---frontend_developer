@@ -3,25 +3,37 @@
 @import "../globals/mixins";
 
 .hero {
-  height: 700px;
+  height: 600px;
+
+  @include b.breakpoint("1240") {
+    height: 700px;
+  }
 
   .hero-elements {
-    width: 770px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 3rem;
 
+    @include b.breakpoint("1240") {
+      width: 770px;
+    }
+
     h1 {
       font-family: "Bebas Neue", cursive;
-      font-size: 90px;
+      font-size: 80px;
       text-transform: uppercase;
       line-height: 1.2;
+
+      @include b.breakpoint("1240") {
+        font-size: 90px;
+      }
 
       span {
         font-family: "Bebas Neue", cursive;
         background: linear-gradient(to right, $primary 0%, $second 100%);
-        -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
     }
