@@ -1,0 +1,38 @@
+@use "../globals/breakpoints" as b;
+@import "../globals/variables";
+@import "../globals/mixins";
+
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+
+  width: 700px;
+  padding: 2rem;
+  background-color: #0c003d;
+  box-shadow: 0 0 10px 10px #6e26bb65;
+  border-radius: 20px;
+  z-index: 5;
+}
+
+.backpop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #0c003d1d;
+  z-index: 4;
+}
+
+.closepop {
+  position: fixed;
+  top: 3rem;
+  right: 3rem;
+  color: white;
+  z-index: 6;
+  font-size: 30px;
+  cursor: pointer;
+}
