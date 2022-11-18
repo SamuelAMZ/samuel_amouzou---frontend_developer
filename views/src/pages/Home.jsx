@@ -1,11 +1,16 @@
+// built in hooks
 import React from "react";
+
+// components imports
 import Header from "../components/Header";
+import Hero from "../components/Hero";
 
 const Home = () => {
   return (
-    <div>
+    <header style={{ backgroundImage: "url(./images/hero.png)" }}>
       <Header />
-    </div>
+      <Hero />
+    </header>
   );
 };
 
