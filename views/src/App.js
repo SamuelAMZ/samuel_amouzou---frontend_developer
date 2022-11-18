@@ -5,6 +5,7 @@ import { SideMenuOpenProvider } from "./contexts/IsSideMenuOpenContext";
 import { IsPopupOpenProvider } from "./contexts/IsPopupOpenContext";
 import { AllCapsulesProvider } from "./contexts/AllCapsuleContext";
 import { IsloadingCapsulesProvider } from "./contexts/IsLoadingCapsulesContext";
+import { ActiveCapsuleProvider } from "./contexts/ActiveCapsuleContext";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
         <IsPopupOpenProvider>
           <AllCapsulesProvider>
             <IsloadingCapsulesProvider>
-              <Home />
+              <ActiveCapsuleProvider>
+                <Home />
+              </ActiveCapsuleProvider>
             </IsloadingCapsulesProvider>
           </AllCapsulesProvider>
         </IsPopupOpenProvider>

@@ -21,10 +21,16 @@ $routes = new SpaceRoutes();
  */
 $klein = new \Klein\Klein();
 
-
+// get all capsules
 $klein->respond('GET', base . '/all', function() {
     global $routes;
     return $routes->getAll();
+});
+
+// get one capsule
+$klein->respond('POST', base . '/one', function($request) {
+    global $routes;
+    return $routes->getOne($request);
 });
 
 

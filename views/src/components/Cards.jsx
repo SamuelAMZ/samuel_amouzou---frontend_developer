@@ -16,7 +16,6 @@ import Popup from "./Popup";
 
 const Cards = () => {
   const { active } = useContext(IsPopupOpenContext);
-  const { capsules, setCapsules } = useContext(AllCapsuleContext);
   const [isLoading, setIsLoading] = useState(false);
 
   // fetch all capsules

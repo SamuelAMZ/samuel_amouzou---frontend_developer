@@ -1,30 +1,38 @@
-import React, { useContext } from "react";
+// built in context
+import React, { useEffect, useContext } from "react";
+
+// custom hooks
+import useGetOneCapsule from "../hooks/useGetOneCapsule";
 
 // context
 import IsPopupOpenContext from "../contexts/IsPopupOpenContext";
+import ActiveCapsuleContext from "../contexts/ActiveCapsuleContext";
 
 // icons
 import { MdClose } from "react-icons/md";
 
 const Popup = () => {
   const { setActive } = useContext(IsPopupOpenContext);
+  const { activeCapsule } = useContext(ActiveCapsuleContext);
+
+  // get the data of the single active capsule
+  // fetch all capsules
+  const { currentData: capsuleData, isError } = useGetOneCapsule(
+    `${process.env.REACT_APP_DOMAIN}/all`,
+    activeCapsule
+  );
+
+  useEffect(() => {
+    console.log(capsuleData);
+  }, [capsuleData]);
 
   return (
     <>
       <div className="backpop" onClick={() => setActive(false)}></div>
       <div className="popup-container">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio
-        explicabo temporibus velit illo eos sed minus praesentium, voluptates
-        sapiente rem. Pariatur vel nemo molestias esse, vero voluptates officiis
-        molestiae ipsum deleniti quisquam, quia officia, sequi error. Officiis,
-        veritatis vitae rem expedita obcaecati eveniet. Beatae, impedit animi
-        sunt natus accusamus obcaecati incidunt culpa rem suscipit similique vel
-        eius temporibus velit odio aliquam ipsam quisquam reiciendis ad amet?
-        Veritatis pariatur atque, ea et perferendis molestias odit? Rerum nemo
-        quas voluptatem tenetur et nihil voluptates doloribus consectetur natus,
-        aliquam eaque quibusdam ratione est qui, quis perferendis nisi quo,
-        aperiam enim harum doloremque at.
+        {capsuleData ? <p>{capsuleData[0].capsule_serial}</p> : "loading..."}
       </div>
+
       <div className="closepop" onClick={() => setActive(false)}>
         <MdClose />
       </div>
