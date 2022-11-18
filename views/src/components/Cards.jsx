@@ -1,5 +1,5 @@
 // built in hooks
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 // custom hooks
 import useGetAllCapsules from "../hooks/useGetAllCapsules";
@@ -16,15 +16,13 @@ import Popup from "./Popup";
 
 const Cards = () => {
   const { active } = useContext(IsPopupOpenContext);
-  const { setIsLoading } = useContext(IsloadingCapsulesContext);
   const { capsules, setCapsules } = useContext(AllCapsuleContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   // fetch all capsules
-  const {
-    currentData: capsulesData,
-    isError,
-    isLoading,
-  } = useGetAllCapsules(`${process.env.REACT_APP_DOMAIN}/all`);
+  const { currentData: capsulesData, isError } = useGetAllCapsules(
+    `${process.env.REACT_APP_DOMAIN}/all`
+  );
 
   // fetch(`${process.env.REACT_APP_DOMAIN}/all`, {
   //   method: "GET",
@@ -39,20 +37,17 @@ const Cards = () => {
 
   useEffect(() => {
     if (capsulesData) {
-      console.log(capsulesData);
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
     }
-    console.log("hey");
   }, [capsulesData]);
 
   return (
     <>
       <div className="cards-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-15">
-        <SingleCard />
-        <SingleCard />
-        <SingleCard />
-        <SingleCard />
-        <SingleCard />
-        <SingleCard />
+        {capsulesData &&
+          capsulesData.map((elm, idx) => <SingleCard data={elm} key={idx} />)}
       </div>
 
       {/* pagination */}
