@@ -1,0 +1,24 @@
+@import "./variables";
+
+@mixin smalbtn {
+  background: rgb(255, 176, 24);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 176, 24, 1) 0%,
+    rgba(255, 41, 0, 1) 100%
+  );
+  padding: 0.7rem 1.3rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.7s ease-in;
+  border: 2px solid white;
+
+  &:hover {
+    background: rgb(255, 176, 24);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 176, 24, 1) 0%,
+      rgba(255, 41, 0, 1) 100%
+    );
+  }
+}

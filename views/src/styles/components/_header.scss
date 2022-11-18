@@ -1,0 +1,64 @@
+@use "../globals/breakpoints" as b;
+@import "../globals/variables";
+@import "../globals/mixins";
+
+header {
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  // logo
+  .logo {
+    img {
+      width: 103px;
+      height: auto;
+
+      @include b.breakpoint("768") {
+        width: 130px;
+      }
+    }
+  }
+
+  // menu
+  .menu {
+    ul {
+      display: flex;
+      flex-direction: row;
+      gap: 1.7rem;
+      align-items: center;
+      justify-content: center;
+
+      li {
+        transition: 0.1s ease-in;
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  //   account
+  .account {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+
+    // button styles from mixins
+    @include smalbtn;
+
+    .icon {
+      font-size: 20px;
+    }
+  }
+
+  //   mobile icon
+  .mobile-menu-icon {
+    padding: 0 0 0 1rem;
+    cursor: pointer;
+
+    .icon {
+      font-size: 30px;
+    }
+  }
+}

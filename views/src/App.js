@@ -1,9 +1,12 @@
 import Home from "./pages/Home";
+import { SideMenuOpenProvider } from "./contexts/IsSideMenuOpenContext";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <SideMenuOpenProvider>
+        <Home />
+      </SideMenuOpenProvider>
     </div>
   );
 }
