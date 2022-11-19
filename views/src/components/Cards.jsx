@@ -17,12 +17,14 @@ import Popup from "./Popup";
 
 const Cards = () => {
   const { active } = useContext(IsPopupOpenContext);
-  const { setCapsules } = useContext(AllCapsuleContext);
+  const { capsules, setCapsules } = useContext(AllCapsuleContext);
   const { options } = useContext(CurrentFilterOptionContext);
   const [isLoading, setIsLoading] = useState(false);
 
   // check for filter combined or individual mode
   const [isChecked, setIsChecked] = useState(false);
+  // keep track of how many card is available in the dom
+  const [count, setCount] = useState(null);
 
   // fetch all capsules
   const { currentData: capsulesData, isError } = useGetAllCapsules(
@@ -201,7 +203,25 @@ const Cards = () => {
     return capsuleBrute;
   };
 
-  // hanlde filter modes
+  // handle counts
+  let resultsCount = [];
+  const HandleCounts = (resultsArr) => {
+    resultsCount.push(resultsArr.length);
+
+    return resultsArr;
+  };
+
+  // default count
+  useEffect(() => {
+    if (capsulesData) {
+      setCount(capsulesData.length);
+    }
+  }, [capsulesData]);
+
+  // count on filtering
+  useEffect(() => {
+    setCount(resultsCount[resultsCount.length - 1]);
+  }, [isChecked, options]);
 
   return (
     <>
@@ -221,16 +241,21 @@ const Cards = () => {
         </label>
       </div>
 
+      {/* count show */}
+      <div className="count toggleer text-white">
+        {count ? count + " results found" : "no result found"}
+      </div>
+
       {/* cards */}
       <div className="cards-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-15">
         {capsulesData &&
           (isChecked
-            ? handleFiltering(capsulesData).map((elm, idx) => (
-                <SingleCard data={elm} key={idx} />
-              ))
-            : handleMatchFiltering(capsulesData).map((elm, idx) => (
-                <SingleCard data={elm} key={idx} />
-              )))}
+            ? HandleCounts(handleFiltering(capsulesData)).map(
+                (elm, idx, arr) => <SingleCard data={elm} key={idx} />
+              )
+            : HandleCounts(handleMatchFiltering(capsulesData)).map(
+                (elm, idx, arr) => <SingleCard data={elm} key={idx} />
+              ))}
       </div>
 
       {/* pagination */}
