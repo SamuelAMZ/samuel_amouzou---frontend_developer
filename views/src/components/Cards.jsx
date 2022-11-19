@@ -10,6 +10,7 @@ import AllCapsuleContext from "../contexts/AllCapsuleContext";
 import IsloadingCapsulesContext from "../contexts/IsLoadingCapsulesContext";
 import CurrentFilterOptionContext from "../contexts/CurentFilterOptionsContext";
 import ResetFormContext from "../contexts/ResetFilterFormContext";
+import CurrentPageContext from "../contexts/CurrentPageContext";
 
 // components
 import SingleCard from "./SingleCard";
@@ -21,12 +22,15 @@ const Cards = () => {
   const { setCapsules } = useContext(AllCapsuleContext);
   const { setOptions, options } = useContext(CurrentFilterOptionContext);
   const { resetForm, setResetForm } = useContext(ResetFormContext);
+  const { pageNumber, setPageNumber } = useContext(CurrentPageContext);
   const [isLoading, setIsLoading] = useState(false);
 
   // check for filter combined or individual mode
   const [isChecked, setIsChecked] = useState(false);
   // keep track of how many card is available in the dom
   const [count, setCount] = useState(null);
+
+  // pagination number of result
 
   // fetch all capsules
   const { currentData: capsulesData, isError } = useGetAllCapsules(
@@ -231,6 +235,13 @@ const Cards = () => {
     setOptions([]);
     //reset form fiels
     setResetForm(resetForm + 1);
+    // reset page state
+    setPageNumber(1);
+  };
+
+  // get the numbers for the slice
+  const sliceNum = () => {
+    return (Number(pageNumber) - 1) * 6;
   };
 
   return (
@@ -269,16 +280,16 @@ const Cards = () => {
       <div className="cards-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-15">
         {capsulesData &&
           (isChecked
-            ? HandleCounts(handleFiltering(capsulesData)).map(
-                (elm, idx, arr) => <SingleCard data={elm} key={idx} />
-              )
-            : HandleCounts(handleMatchFiltering(capsulesData)).map(
-                (elm, idx, arr) => <SingleCard data={elm} key={idx} />
-              ))}
+            ? HandleCounts(handleFiltering(capsulesData))
+                .slice(sliceNum(), sliceNum() + 6)
+                .map((elm, idx, arr) => <SingleCard data={elm} key={idx} />)
+            : HandleCounts(handleMatchFiltering(capsulesData))
+                .slice(sliceNum(), sliceNum() + 6)
+                .map((elm, idx, arr) => <SingleCard data={elm} key={idx} />))}
       </div>
 
       {/* pagination */}
-      <Pagination />
+      <Pagination resultNumber={count} />
 
       {/* popup */}
       {active && <Popup />}

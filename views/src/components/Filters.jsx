@@ -5,11 +5,13 @@ import React, { useContext, useState, useEffect } from "react";
 import AllCapsuleContext from "../contexts/AllCapsuleContext";
 import CurrentFilterOptionContext from "../contexts/CurentFilterOptionsContext";
 import ResetFormContext from "../contexts/ResetFilterFormContext";
+import CurrentPageContext from "../contexts/CurrentPageContext";
 
 const Filters = () => {
   const { capsules } = useContext(AllCapsuleContext);
   const { options, setOptions } = useContext(CurrentFilterOptionContext);
   const { resetForm } = useContext(ResetFormContext);
+  const { setPageNumber } = useContext(CurrentPageContext);
 
   // getting filters options from capsules context
   const [status, setStatus] = useState([]);
@@ -82,6 +84,9 @@ const Filters = () => {
   const hanldeFilterSubmit = (e) => {
     // prevent reload
     e.preventDefault();
+
+    // reset current page
+    setPageNumber(1);
 
     // verify if at least one option is selected
     let verify = [];

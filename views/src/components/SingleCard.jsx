@@ -22,7 +22,12 @@ const SingleCard = ({ data }) => {
           <img src="./images/mars1.png" alt="mars" />
           <h3>{data.capsule_serial}</h3>
           <hr />
+          <h4 className="text-start">
+            Status: {data.status ? data.status : "No status data"}
+          </h4>
+          <h4>Type: {data.type ? data.type : "No type data"}</h4>
           <h4>
+            Launch:{" "}
             {data.original_launch
               ? data.original_launch
               : "No original launch data"}
