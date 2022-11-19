@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 // contexts
 import IsloadingCapsulesContext from "../contexts/IsLoadingCapsulesContext";
 
-const useGetOneCapsule = (currentUrl, data) => {
+const useGetOneCapsule = (data) => {
   const { isLoading, setIsLoading } = useContext(IsloadingCapsulesContext);
   const [currentData, setCurrentData] = useState(null);
   const [isError, setIsError] = useState(null);

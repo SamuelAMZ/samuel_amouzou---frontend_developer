@@ -6,6 +6,7 @@ import { IsPopupOpenProvider } from "./contexts/IsPopupOpenContext";
 import { AllCapsulesProvider } from "./contexts/AllCapsuleContext";
 import { IsloadingCapsulesProvider } from "./contexts/IsLoadingCapsulesContext";
 import { ActiveCapsuleProvider } from "./contexts/ActiveCapsuleContext";
+import { CurrentFilterOptionProvider } from "./contexts/CurentFilterOptionsContext";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
           <AllCapsulesProvider>
             <IsloadingCapsulesProvider>
               <ActiveCapsuleProvider>
-                <Home />
+                <CurrentFilterOptionProvider>
+                  <Home />
+                </CurrentFilterOptionProvider>
               </ActiveCapsuleProvider>
             </IsloadingCapsulesProvider>
           </AllCapsulesProvider>

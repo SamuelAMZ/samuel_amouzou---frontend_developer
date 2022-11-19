@@ -17,10 +17,7 @@ const Popup = () => {
 
   // get the data of the single active capsule
   // fetch all capsules
-  const { currentData: capsuleData, isError } = useGetOneCapsule(
-    `${process.env.REACT_APP_DOMAIN}/all`,
-    activeCapsule
-  );
+  const { currentData: capsuleData, isError } = useGetOneCapsule(activeCapsule);
 
   useEffect(() => {
     console.log(capsuleData);
@@ -61,7 +58,7 @@ const Popup = () => {
                   : "N/A"}
               </p>
               <p>
-                Capsule Original Launch Unix:
+                Capsule Original Launch Unix:{" "}
                 {capsuleData[0].original_launch_unix
                   ? capsuleData[0].original_launch_unix
                   : "N/A"}
