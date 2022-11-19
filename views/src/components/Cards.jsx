@@ -9,6 +9,7 @@ import IsPopupOpenContext from "../contexts/IsPopupOpenContext";
 import AllCapsuleContext from "../contexts/AllCapsuleContext";
 import IsloadingCapsulesContext from "../contexts/IsLoadingCapsulesContext";
 import CurrentFilterOptionContext from "../contexts/CurentFilterOptionsContext";
+import ResetFormContext from "../contexts/ResetFilterFormContext";
 
 // components
 import SingleCard from "./SingleCard";
@@ -17,8 +18,9 @@ import Popup from "./Popup";
 
 const Cards = () => {
   const { active } = useContext(IsPopupOpenContext);
-  const { capsules, setCapsules } = useContext(AllCapsuleContext);
-  const { options } = useContext(CurrentFilterOptionContext);
+  const { setCapsules } = useContext(AllCapsuleContext);
+  const { setOptions, options } = useContext(CurrentFilterOptionContext);
+  const { resetForm, setResetForm } = useContext(ResetFormContext);
   const [isLoading, setIsLoading] = useState(false);
 
   // check for filter combined or individual mode
@@ -223,6 +225,14 @@ const Cards = () => {
     setCount(resultsCount[resultsCount.length - 1]);
   }, [isChecked, options]);
 
+  // reset filter
+  const resetFilter = () => {
+    // set options to default
+    setOptions([]);
+    //reset form fiels
+    setResetForm(resetForm + 1);
+  };
+
   return (
     <>
       {/* toggle type of macthes */}
@@ -239,6 +249,15 @@ const Cards = () => {
             {isChecked ? "Individual match" : "Combined mathes"}
           </span>
         </label>
+
+        {/* reset */}
+        <button
+          type="button"
+          className="text-white bg-gray-800 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+          onClick={resetFilter}
+        >
+          Reset Filter
+        </button>
       </div>
 
       {/* count show */}

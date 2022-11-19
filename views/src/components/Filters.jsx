@@ -4,10 +4,12 @@ import React, { useContext, useState, useEffect } from "react";
 // contexts
 import AllCapsuleContext from "../contexts/AllCapsuleContext";
 import CurrentFilterOptionContext from "../contexts/CurentFilterOptionsContext";
+import ResetFormContext from "../contexts/ResetFilterFormContext";
 
 const Filters = () => {
   const { capsules } = useContext(AllCapsuleContext);
   const { options, setOptions } = useContext(CurrentFilterOptionContext);
+  const { resetForm } = useContext(ResetFormContext);
 
   // getting filters options from capsules context
   const [status, setStatus] = useState([]);
@@ -103,23 +105,20 @@ const Filters = () => {
     }
   };
 
+  // reset form
   useEffect(() => {
-    console.log(options);
-  }, [options]);
-
-  // useEffect(() => {
-  //   console.log(status);
-  //   console.log(type);
-  //   console.log(launch);
-  // }, [launch]);
+    setStatusOptions("");
+    setTypeOptions("");
+    setLaunchOptions("");
+  }, [resetForm]);
 
   return (
     <div className="filter-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-5">
       <div className="headline">
-        <h3>Some Filters</h3>
+        <h3>Live Filters</h3>
       </div>
       <div className="filters">
-        <form onSubmit={hanldeFilterSubmit}>
+        <form id="filterform" onSubmit={hanldeFilterSubmit}>
           {/* status options */}
           <select
             id="status"
@@ -173,6 +172,7 @@ const Filters = () => {
                 );
               })}
           </select>
+
           <button className="rounded-xl">Filter</button>
         </form>
       </div>

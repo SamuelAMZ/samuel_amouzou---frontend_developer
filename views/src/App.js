@@ -7,6 +7,7 @@ import { AllCapsulesProvider } from "./contexts/AllCapsuleContext";
 import { IsloadingCapsulesProvider } from "./contexts/IsLoadingCapsulesContext";
 import { ActiveCapsuleProvider } from "./contexts/ActiveCapsuleContext";
 import { CurrentFilterOptionProvider } from "./contexts/CurentFilterOptionsContext";
+import { ResetFormProvider } from "./contexts/ResetFilterFormContext";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
             <IsloadingCapsulesProvider>
               <ActiveCapsuleProvider>
                 <CurrentFilterOptionProvider>
-                  <Home />
+                  <ResetFormProvider>
+                    <Home />
+                  </ResetFormProvider>
                 </CurrentFilterOptionProvider>
               </ActiveCapsuleProvider>
             </IsloadingCapsulesProvider>
