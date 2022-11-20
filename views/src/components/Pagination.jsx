@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 
 // icons
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
@@ -24,6 +24,7 @@ const Pagination = ({ resultNumber }) => {
         setSteps(stepsNum);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resultNumber, capsules, pageNumber]);
 
   // get page number

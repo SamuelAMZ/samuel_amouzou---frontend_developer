@@ -1,5 +1,5 @@
 // built in context
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 
 // custom hooks
 import useGetOneCapsule from "../hooks/useGetOneCapsule";
@@ -16,12 +16,7 @@ const Popup = () => {
   const { activeCapsule } = useContext(ActiveCapsuleContext);
 
   // get the data of the single active capsule
-  // fetch all capsules
-  const { currentData: capsuleData, isError } = useGetOneCapsule(activeCapsule);
-
-  useEffect(() => {
-    console.log(capsuleData);
-  }, [capsuleData]);
+  const { currentData: capsuleData } = useGetOneCapsule(activeCapsule);
 
   return (
     <>

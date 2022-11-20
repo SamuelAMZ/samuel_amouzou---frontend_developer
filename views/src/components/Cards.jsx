@@ -7,7 +7,6 @@ import useGetAllCapsules from "../hooks/useGetAllCapsules";
 // context
 import IsPopupOpenContext from "../contexts/IsPopupOpenContext";
 import AllCapsuleContext from "../contexts/AllCapsuleContext";
-import IsloadingCapsulesContext from "../contexts/IsLoadingCapsulesContext";
 import CurrentFilterOptionContext from "../contexts/CurentFilterOptionsContext";
 import ResetFormContext from "../contexts/ResetFilterFormContext";
 import CurrentPageContext from "../contexts/CurrentPageContext";
@@ -32,25 +31,23 @@ const Cards = () => {
   // keep track of how many card is available in the dom
   const [count, setCount] = useState(null);
 
-  // pagination number of result
-
   // fetch all capsules
-  const { currentData: capsulesData, isError } = useGetAllCapsules(
+  const { currentData: capsulesData } = useGetAllCapsules(
     `${process.env.REACT_APP_DOMAIN}/all`
   );
 
   useEffect(() => {
     if (capsulesData) {
-      // console.log(capsulesData);
       setIsLoading(false);
       // set capsules globally in the capsules context
       setCapsules(capsulesData);
     } else {
       setIsLoading(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [capsulesData]);
 
-  // handle filtering
+  // handle filtering individual match
   const handleFiltering = (capsuleBrute) => {
     let filtersArr = [];
     // check if at least one filter option is available
@@ -60,6 +57,8 @@ const Cards = () => {
         const statusFilter = capsuleBrute.filter((elm) => {
           if (elm.status) {
             return elm.status.includes(options[0].status);
+          } else {
+            return false;
           }
         });
         filtersArr.push(...statusFilter);
@@ -70,6 +69,8 @@ const Cards = () => {
         const typeFirlter = capsuleBrute.filter((elm) => {
           if (elm.type) {
             return elm.type.includes(options[0].type);
+          } else {
+            return false;
           }
         });
         filtersArr.push(...typeFirlter);
@@ -80,6 +81,8 @@ const Cards = () => {
         const launchFirlter = capsuleBrute.filter((elm) => {
           if (elm.original_launch) {
             return elm.original_launch.includes(options[0].launch);
+          } else {
+            return false;
           }
         });
         filtersArr.push(...launchFirlter);
@@ -93,7 +96,7 @@ const Cards = () => {
     }
   };
 
-  // handle filtering
+  // handle filtering combined matches
   const handleMatchFiltering = (capsuleBrute) => {
     // check if at least one filter option is available
     if (options[0]) {
@@ -103,6 +106,8 @@ const Cards = () => {
         let statusFilter = capsuleBrute.filter((elm) => {
           if (elm.status) {
             return elm.status.includes(options[0].status);
+          } else {
+            return false;
           }
         });
 
@@ -115,6 +120,8 @@ const Cards = () => {
         let statusFilter = capsuleBrute.filter((elm) => {
           if (elm.type) {
             return elm.type.includes(options[0].type);
+          } else {
+            return false;
           }
         });
 
@@ -127,6 +134,8 @@ const Cards = () => {
         const final = capsuleBrute.filter((elm) => {
           if (elm.original_launch) {
             return elm.original_launch.includes(options[0].launch);
+          } else {
+            return false;
           }
         });
 
@@ -139,12 +148,16 @@ const Cards = () => {
         let statusFilter = capsuleBrute.filter((elm) => {
           if (elm.status) {
             return elm.status.includes(options[0].status);
+          } else {
+            return false;
           }
         });
 
         const final = statusFilter.filter((elm) => {
           if (elm.type) {
             return elm.type.includes(options[0].type);
+          } else {
+            return false;
           }
         });
 
@@ -157,12 +170,16 @@ const Cards = () => {
         let statusFilter = capsuleBrute.filter((elm) => {
           if (elm.status) {
             return elm.status.includes(options[0].status);
+          } else {
+            return false;
           }
         });
 
         const final = statusFilter.filter((elm) => {
           if (elm.original_launch) {
             return elm.original_launch.includes(options[0].launch);
+          } else {
+            return false;
           }
         });
 
@@ -175,12 +192,16 @@ const Cards = () => {
         let statusFilter = capsuleBrute.filter((elm) => {
           if (elm.type) {
             return elm.type.includes(options[0].type);
+          } else {
+            return false;
           }
         });
 
         const final = statusFilter.filter((elm) => {
           if (elm.original_launch) {
             return elm.original_launch.includes(options[0].launch);
+          } else {
+            return false;
           }
         });
 
@@ -193,18 +214,24 @@ const Cards = () => {
         let statusFilter = capsuleBrute.filter((elm) => {
           if (elm.status) {
             return elm.status.includes(options[0].status);
+          } else {
+            return false;
           }
         });
 
         const pre = statusFilter.filter((elm) => {
           if (elm.type) {
             return elm.type.includes(options[0].type);
+          } else {
+            return false;
           }
         });
 
         const final = pre.filter((elm) => {
           if (elm.original_launch) {
             return elm.original_launch.includes(options[0].launch);
+          } else {
+            return false;
           }
         });
 
@@ -239,6 +266,7 @@ const Cards = () => {
     if (!count) {
       setSteps(1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked, options, count]);
 
   // reset filter

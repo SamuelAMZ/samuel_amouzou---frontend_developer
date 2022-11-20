@@ -9,7 +9,7 @@ import CurrentPageContext from "../contexts/CurrentPageContext";
 
 const Filters = () => {
   const { capsules } = useContext(AllCapsuleContext);
-  const { options, setOptions } = useContext(CurrentFilterOptionContext);
+  const { setOptions } = useContext(CurrentFilterOptionContext);
   const { resetForm } = useContext(ResetFormContext);
   const { setPageNumber } = useContext(CurrentPageContext);
 
