@@ -20,7 +20,11 @@ const Popup = () => {
 
   return (
     <>
-      <div className="backpop" onClick={() => setActive(false)}></div>
+      <div
+        data-testid="popup"
+        className="backpop"
+        onClick={() => setActive(false)}
+      ></div>
       <div className="popup-container">
         {capsuleData ? (
           <div className="single">
@@ -28,7 +32,7 @@ const Popup = () => {
               <img src="/images/mars1.png" alt="" />
             </div>
             <div className="actualsingle-data">
-              <p>
+              <p data-testid="singleData">
                 Capsule Serial:{" "}
                 {capsuleData[0].capsule_serial
                   ? capsuleData[0].capsule_serial

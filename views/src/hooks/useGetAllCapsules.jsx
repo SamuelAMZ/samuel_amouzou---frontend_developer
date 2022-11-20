@@ -1,10 +1,6 @@
-import { useEffect, useState, useContext } from "react";
-
-// contexts
-import IsloadingCapsulesContext from "../contexts/IsLoadingCapsulesContext";
+import { useEffect, useState } from "react";
 
 const useGetAllCapsules = (currentUrl) => {
-  const { isLoading, setIsLoading } = useContext(IsloadingCapsulesContext);
   const [currentData, setCurrentData] = useState(null);
   const [isError, setIsError] = useState(null);
 
@@ -15,10 +11,8 @@ const useGetAllCapsules = (currentUrl) => {
         const serverMessage = await response.json();
 
         setCurrentData(serverMessage);
-        setIsLoading(false);
         setIsError(null);
       } catch (err) {
-        setIsLoading(false);
         setIsError(err);
       }
     };
@@ -26,7 +20,7 @@ const useGetAllCapsules = (currentUrl) => {
     sendFetch();
   }, [currentUrl]);
 
-  return { currentData, isError, isLoading };
+  return { currentData, isError };
 };
 
 export default useGetAllCapsules;

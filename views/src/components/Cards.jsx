@@ -18,12 +18,15 @@ import Pagination from "./Pagination";
 import Popup from "./Popup";
 
 const Cards = () => {
+  // contexts
   const { active } = useContext(IsPopupOpenContext);
   const { setCapsules } = useContext(AllCapsuleContext);
   const { setOptions, options } = useContext(CurrentFilterOptionContext);
   const { resetForm, setResetForm } = useContext(ResetFormContext);
   const { pageNumber, setPageNumber } = useContext(CurrentPageContext);
   const { setSteps } = useContext(StepsContext);
+
+  // states
   const [isLoading, setIsLoading] = useState(false);
 
   // check for filter combined or individual mode

@@ -16,9 +16,13 @@ const SingleCard = ({ data }) => {
   };
 
   return (
-    <div className="card" onClick={handleSingleCapsule}>
+    <>
       {data ? (
-        <>
+        <div
+          data-testid={`card${data.capsule_serial}`}
+          className="card"
+          onClick={handleSingleCapsule}
+        >
           <img src="./images/mars1.png" alt="mars" />
           <h3>{data.capsule_serial}</h3>
           <hr />
@@ -32,11 +36,11 @@ const SingleCard = ({ data }) => {
               ? data.original_launch
               : "No original launch data"}
           </h4>
-        </>
+        </div>
       ) : (
         <p>No data</p>
       )}
-    </div>
+    </>
   );
 };
 
