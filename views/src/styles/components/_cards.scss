@@ -3,6 +3,7 @@
 @import "../globals/mixins";
 
 .cards-container {
+  position: relative;
   color: white;
   margin-top: 3rem;
 
@@ -23,4 +24,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -11,6 +11,7 @@ import IsloadingCapsulesContext from "../contexts/IsLoadingCapsulesContext";
 import CurrentFilterOptionContext from "../contexts/CurentFilterOptionsContext";
 import ResetFormContext from "../contexts/ResetFilterFormContext";
 import CurrentPageContext from "../contexts/CurrentPageContext";
+import StepsContext from "../contexts/StepsContext";
 
 // components
 import SingleCard from "./SingleCard";
@@ -23,6 +24,7 @@ const Cards = () => {
   const { setOptions, options } = useContext(CurrentFilterOptionContext);
   const { resetForm, setResetForm } = useContext(ResetFormContext);
   const { pageNumber, setPageNumber } = useContext(CurrentPageContext);
+  const { setSteps } = useContext(StepsContext);
   const [isLoading, setIsLoading] = useState(false);
 
   // check for filter combined or individual mode
@@ -84,7 +86,11 @@ const Cards = () => {
       }
     }
 
-    return filtersArr;
+    if (options[0]) {
+      return filtersArr;
+    } else {
+      return capsuleBrute;
+    }
   };
 
   // handle filtering
@@ -227,7 +233,13 @@ const Cards = () => {
   // count on filtering
   useEffect(() => {
     setCount(resultsCount[resultsCount.length - 1]);
-  }, [isChecked, options]);
+    // comme back to page one
+    setPageNumber(1);
+    // reset steps to one if result not found
+    if (!count) {
+      setSteps(1);
+    }
+  }, [isChecked, options, count]);
 
   // reset filter
   const resetFilter = () => {
@@ -247,7 +259,10 @@ const Cards = () => {
   return (
     <>
       {/* toggle type of macthes */}
-      <div className="toggleer md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-15">
+      <div
+        id="capsules"
+        className="toggleer md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-15"
+      >
         <label className="inline-flex relative items-center mr-5 cursor-pointer">
           <input
             type="checkbox"
@@ -282,10 +297,13 @@ const Cards = () => {
           (isChecked
             ? HandleCounts(handleFiltering(capsulesData))
                 .slice(sliceNum(), sliceNum() + 6)
-                .map((elm, idx, arr) => <SingleCard data={elm} key={idx} />)
+                .map((elm, idx) => <SingleCard data={elm} key={idx} />)
             : HandleCounts(handleMatchFiltering(capsulesData))
                 .slice(sliceNum(), sliceNum() + 6)
-                .map((elm, idx, arr) => <SingleCard data={elm} key={idx} />))}
+                .map((elm, idx) => <SingleCard data={elm} key={idx} />))}
+
+        {/* when loading data */}
+        {isLoading && <p className="loading">Loading capsules...</p>}
       </div>
 
       {/* pagination */}

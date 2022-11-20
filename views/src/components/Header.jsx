@@ -15,9 +15,12 @@ const Header = () => {
   const { active, setActive } = useContext(SideMenuOpenContext);
 
   return (
-    <div className="md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 flex items-center justify-between md:px-10 xl:px-15 ">
+    <div
+      id="top"
+      className="md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 flex items-center justify-between md:px-10 xl:px-15 "
+    >
       <div className="logo">
-        <a href="#home">
+        <a href="#top">
           <img src="./images/logo.png" alt="logo" />
         </a>
       </div>
@@ -26,7 +29,7 @@ const Header = () => {
       <div className="menu hidden md:block">
         <ul>
           <li>
-            <a href="#home">Home</a>
+            <a href="#top">Home</a>
           </li>
           <li>
             <a href="#filters">Filters</a>
@@ -36,10 +39,13 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <div className="account hidden md:flex">
-        <p>Account</p>
-        <BsArrowRight className="icon" />
-      </div>
+      <a href="#filters">
+        <div className="account hidden md:flex">
+          {" "}
+          <p>Start</p>
+          <BsArrowRight className="icon" />
+        </div>
+      </a>
 
       {/* mobile menu icon */}
       <div

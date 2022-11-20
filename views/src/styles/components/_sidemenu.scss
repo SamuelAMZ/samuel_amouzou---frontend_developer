@@ -41,22 +41,26 @@
     gap: 1rem;
   }
 
-  .mobile-account {
+  a {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgb(255, 176, 24);
-    background: linear-gradient(
-      90deg,
-      rgba(255, 176, 24, 1) 0%,
-      rgba(255, 41, 0, 1) 100%
-    );
-    color: white;
-    padding: 0.5rem;
-    border-radius: 15px;
-    gap: 0.5rem;
-    border: 2px solid white;
+
+    .mobile-account {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgb(255, 176, 24);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 176, 24, 1) 0%,
+        rgba(255, 41, 0, 1) 100%
+      );
+      color: white;
+      padding: 0.5rem;
+      border-radius: 15px;
+      gap: 0.5rem;
+      border: 2px solid white;
+    }
   }
 }
 

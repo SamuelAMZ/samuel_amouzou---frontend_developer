@@ -118,7 +118,10 @@ const Filters = () => {
   }, [resetForm]);
 
   return (
-    <div className="filter-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-5">
+    <div
+      id="filters"
+      className="filter-container md:max-w-7xl xl:max-w-screen-xl mx-auto px-5 py-5 md:px-10 xl:px-5"
+    >
       <div className="headline">
         <h3>Live Filters</h3>
       </div>

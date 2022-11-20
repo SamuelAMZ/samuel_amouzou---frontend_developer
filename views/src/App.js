@@ -9,6 +9,7 @@ import { ActiveCapsuleProvider } from "./contexts/ActiveCapsuleContext";
 import { CurrentFilterOptionProvider } from "./contexts/CurentFilterOptionsContext";
 import { ResetFormProvider } from "./contexts/ResetFilterFormContext";
 import { CurrentPageProvider } from "./contexts/CurrentPageContext";
+import { StepsProvider } from "./contexts/StepsContext";
 
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
                 <CurrentFilterOptionProvider>
                   <ResetFormProvider>
                     <CurrentPageProvider>
-                      <Home />
+                      <StepsProvider>
+                        <Home />
+                      </StepsProvider>
                     </CurrentPageProvider>
                   </ResetFormProvider>
                 </CurrentFilterOptionProvider>

@@ -28,6 +28,10 @@
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
+
+    svg {
+      pointer-events: none;
+    }
   }
   .next {
     margin-left: 3rem;

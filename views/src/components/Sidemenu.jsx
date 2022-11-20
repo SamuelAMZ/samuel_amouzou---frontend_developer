@@ -11,20 +11,33 @@ import { BsArrowRight } from "react-icons/bs";
 const Sidemenu = () => {
   const { setActive } = useContext(SideMenuOpenContext);
 
+  // close menu when clicked
+  const handleMenuClick = () => {
+    setActive(false);
+  };
+
   return (
     <>
       <div className="back" onClick={() => setActive(false)}></div>
       <div className="side-menu">
-        <ul>
-          <li>Home</li>
-          <li>Filters</li>
-          <li>Capsules</li>
+        <ul onClick={handleMenuClick}>
+          <a href="#home">
+            <li>Home</li>
+          </a>
+          <a href="#filters">
+            <li>Filters</li>
+          </a>
+          <a href="#capsules">
+            <li>Capsules</li>
+          </a>
         </ul>
 
-        <div className="mobile-account">
-          <p>Account</p>
-          <BsArrowRight className="icon" />
-        </div>
+        <a href="#filters" onClick={handleMenuClick}>
+          <div className="mobile-account">
+            <p>Account</p>
+            <BsArrowRight className="icon" />
+          </div>
+        </a>
       </div>
       <div className="close" onClick={() => setActive(false)}>
         <MdClose />

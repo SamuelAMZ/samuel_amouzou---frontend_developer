@@ -6,9 +6,10 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 // context
 import AllCapsuleContext from "../contexts/AllCapsuleContext";
 import CurrentPageContext from "../contexts/CurrentPageContext";
+import StepsContext from "../contexts/StepsContext";
 
 const Pagination = ({ resultNumber }) => {
-  const [steps, setSteps] = useState("");
+  const { steps, setSteps } = useContext(StepsContext);
   const { pageNumber, setPageNumber } = useContext(CurrentPageContext);
   const { capsules } = useContext(AllCapsuleContext);
 
@@ -23,7 +24,7 @@ const Pagination = ({ resultNumber }) => {
         setSteps(stepsNum);
       }
     }
-  }, [resultNumber]);
+  }, [resultNumber, capsules, pageNumber]);
 
   // get page number
   const setPageNumberFunc = (e) => {
